@@ -7,7 +7,7 @@ const Navbar = () => {
         <span className='text-primary'><i className="bi bi-code-slash me-2"></i></span>
         Collider
       </h3>
-      <div className="actions">
+      <div className="actions d-md-block d-none">
         <button className="btn btn-outline-secondary me-2">
             <i className="bi bi-people-fill me-2"></i>
             Join room</button>

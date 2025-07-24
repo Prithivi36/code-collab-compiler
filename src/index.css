@@ -62,3 +62,19 @@
 .main{
   padding-top: 110px;
 }
+Fix suggestion popup visibility
+.monaco-editor .suggest-widget {
+  z-index: 9999 !important;
+}
+
+/* Optional: tooltip / hover styling */
+.monaco-editor .monaco-hover {
+  z-index: 9999 !important;
+}
+
+/* Optional: match suggestion background for light theme */
+.monaco-editor .suggest-widget,
+.monaco-editor .monaco-list {
+  background-color: #fff !important;
+  color: #000 !important;
+}
