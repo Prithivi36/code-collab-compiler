@@ -20,7 +20,7 @@ export default function CodeEditor(props) {
   };
 
   return (
-    <div style={{height:'85%'}} className="bg-light overflow-hidden col-md-6 rounded-5 mt-3  nav">
+    <div style={{height:'85%'}} className="bg-light overflow-hidden  rounded-5 mt-3  nav">
         <div className="p-2 w-100 d-flex justify-content-between">
             <div className=" d-flex gap-3 align-items-center  ps-3 pt-2">
                 <select className="form-select text-dark ps-3" onChange={handleLanguageChange} value={language} style={{ marginBottom: "10px", padding: "5px" }}>

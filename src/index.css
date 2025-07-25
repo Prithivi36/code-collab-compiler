@@ -59,22 +59,25 @@
 .bg-primary {
   background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
 }
-.main{
+.main-canv{
   padding-top: 110px;
-}
-Fix suggestion popup visibility
-.monaco-editor .suggest-widget {
-  z-index: 9999 !important;
+  color: black;
 }
 
-/* Optional: tooltip / hover styling */
-.monaco-editor .monaco-hover {
-  z-index: 9999 !important;
+.shad{
+    box-shadow: 0px 6px 16px rgb(177, 177, 177);
 }
 
-/* Optional: match suggestion background for light theme */
-.monaco-editor .suggest-widget,
-.monaco-editor .monaco-list {
-  background-color: #fff !important;
-  color: #000 !important;
+.notes {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  resize: none;
+}
+
+.notes:focus,
+.notes:active {
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
