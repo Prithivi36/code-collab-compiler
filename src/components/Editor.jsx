@@ -22,13 +22,16 @@ export default function CodeEditor(props) {
   return (
     <div style={{height:'85%'}} className="bg-light overflow-hidden  rounded-5 mt-3  nav">
         <div className="p-2 w-100 d-flex justify-content-between">
-            <div className=" d-flex gap-3 align-items-center  ps-3 pt-2">
+            <div className=" d-flex gap-3 align-items-center justify-content-center  ps-3 pt-2">
                 <select className="form-select text-dark ps-3" onChange={handleLanguageChange} value={language} style={{ marginBottom: "10px", padding: "5px" }}>
                     <option value="javascript">JavaScript</option>
                     <option value="python">Python</option>
                     <option value="cpp">C++</option>
                     <option value="java">Java</option>
                 </select>
+                <button className="btn">
+                  <i className="bi bi-mic-fill text-primary"></i>
+                </button>
                 {props.uid==-1||<div style={{display:'inline-block'}}  className={`rounded-5 me-2 my-2 py-0 pb-0 btn btn-primary`}>
                     <p  className="m-0 fw-normal m-0 p-0 ">{props.user[props.uid]}</p>
                 </div>}
