@@ -4,7 +4,7 @@ import Stomp from 'stompjs';
 let stompClient = null;
 
 export const connectSocket = (roomId, onMessage) => {
-  const socket = new SockJS('http://localhost:8080/ws');
+  const socket = new SockJS('https://comp.back.6thdegree.app/ws');
   stompClient = Stomp.over(socket);
 
   stompClient.connect({}, () => {

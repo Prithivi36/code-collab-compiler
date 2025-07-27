@@ -4,8 +4,7 @@ import { createPistonRequestBody } from "../functions/CreatePistonBody";
 import axios from "axios";
 import { connectSocket, sendCode } from "../stomp/Stomp";
 
-const pool = sessionStorage.getItem('room');
-const roomId = 123456;
+let roomId = sessionStorage.getItem('room');
 const userId = 'user-' + Math.random().toString(36).substr(2, 5);
 
 export default function CodeEditor(props) {
@@ -25,14 +24,16 @@ export default function CodeEditor(props) {
   const [code, setCode] = useState(defaultSnippets[language]);
 
   React.useEffect(() => {
-    if(pool!=null){
-      connectSocket(roomId, (msg) => {
-        if (msg.userId !== userId) {
-          setCode(msg.content);
-        }
-      });
+    console.log(props.user[props.uid]);
+    if(roomId!=null){
+      console.log(roomId)
+        connectSocket(roomId, (msg) => {
+          if (msg.userId !== userId) {
+            setCode(msg.content);
+          }
+        });
     }
-  }, []);
+  }, [props.uid]);
 
 
 
