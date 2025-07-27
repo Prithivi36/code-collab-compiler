@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { createPistonRequestBody } from "../functions/CreatePistonBody";
 import axios from "axios";
+import { connectSocket, sendCode } from "../stomp/Stomp";
+
+const pool = sessionStorage.getItem('room');
+const roomId = 123456;
+const userId = 'user-' + Math.random().toString(36).substr(2, 5);
 
 export default function CodeEditor(props) {
-  const [language, setLanguage] = useState("java");
-
   const defaultSnippets = {
     javascript: "// Write your JavaScript code here",
     python: "# Write your Python code here",
@@ -17,9 +20,24 @@ export default function CodeEditor(props) {
     ruby: "# Write your Ruby code here\ndef hello\n  puts 'Hello from Ruby'\nend\nhello",
     rust: "fn main() {\n  println!(\"Hello from Rust\");\n}"
   };
-
+  const [language, setLanguage] = useState("java");
+  console.log(roomId,userId)
   const [code, setCode] = useState(defaultSnippets[language]);
-  function handleClick(){
+
+  React.useEffect(() => {
+    if(pool!=null){
+      connectSocket(roomId, (msg) => {
+        if (msg.userId !== userId) {
+          setCode(msg.content);
+        }
+      });
+    }
+  }, []);
+
+
+
+
+  function handleSubmit(){
     console.log("hi")
     const body =createPistonRequestBody(language,code,props.stdin)
     axios.post("https://emkc.org/api/v2/piston/execute",body).then(
@@ -36,7 +54,10 @@ export default function CodeEditor(props) {
     setLanguage(newLang);
     setCode(defaultSnippets[newLang] || "// Write your code here");
   };
-
+  function handleChange(value){
+    setCode(value);
+    sendCode(roomId, userId, value);
+  }
   return (
     <div style={{ height: "85%" }} className="bg-light overflow-hidden rounded-5 mt-3 nav">
       <div className="p-2 w-100 d-flex justify-content-between">
@@ -66,7 +87,7 @@ export default function CodeEditor(props) {
             </div>
           )}
         </div>
-        <button onClick={handleClick} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
+        <button onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
       </div>
 
       <Editor
@@ -75,7 +96,7 @@ export default function CodeEditor(props) {
         width="100%"
         language={language}
         value={code}
-        onChange={(value) => setCode(value)}
+        onChange={handleChange}
         theme="vs-light"
       />
     </div>
