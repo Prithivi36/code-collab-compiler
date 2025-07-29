@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const JoinRoomModal = () => {
@@ -6,7 +7,14 @@ const JoinRoomModal = () => {
   const handleJoin = () => {
     if (roomCode.trim()) {
       sessionStorage.setItem('room',roomCode)
-      location.reload();
+      axios.get("https://comp.back.6thdegree.app:8081/rtcToken?channelName="+roomCode).then(
+        res=>{
+          sessionStorage.setItem('agora-token',res.data.key)
+          console.log(res.data,"************************************8")
+        }
+      ).then(
+        res=>location.reload()
+      )
     }
   };
 

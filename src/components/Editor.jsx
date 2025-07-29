@@ -3,6 +3,7 @@ import Editor from "@monaco-editor/react";
 import { createPistonRequestBody } from "../functions/CreatePistonBody";
 import axios from "axios";
 import { connectSocket, sendCode } from "../stomp/Stomp";
+import Audio from "./Audio";
 
 let roomId = sessionStorage.getItem('room');
 const userId = 'user-' + Math.random().toString(36).substr(2, 5);
@@ -79,9 +80,7 @@ export default function CodeEditor(props) {
             <option value="ruby">Ruby</option>
             <option value="rust">Rust</option>
           </select>
-          <button className="btn">
-            <i className="bi bi-mic-fill text-primary"></i>
-          </button>
+          {sessionStorage.getItem('agora-token')!=null && <Audio />}
           {props.uid === -1 || (
             <div style={{ display: "inline-block" }} className="rounded-5 me-2 my-2 py-0 pb-0 btn btn-primary">
               <p className="m-0 fw-normal m-0 p-0">{props.user[props.uid]}</p>

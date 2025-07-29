@@ -9,7 +9,7 @@ const Navbar = (props) => {
         <span className='text-primary'><i className="bi bi-code-slash me-2"></i></span>
         Collider
       </h3>
-      <div className="actions d-md-block d-none">
+      <div className="actions d-md-block">
         <button className="btn btn-outline-secondary me-2"
           data-bs-toggle="modal"
           data-bs-target="#joinRoomModal"
@@ -17,9 +17,9 @@ const Navbar = (props) => {
             <i className="bi bi-people-fill me-2"></i>
             Join room</button>
           <JoinRoomModal />
-        <button className="btn btn-primary me-2">
+        {/* <button className="btn btn-primary me-2">
             <i className="bi bi-plus-circle-fill me-2"></i>
-            Create room</button>
+            Create room</button> */}
       </div>
     </div>
   )
