@@ -6,23 +6,16 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                sh '''
-                ls
-                cd code-collab-compiler-backend
-                ls
-                cd code-collab-compiler-backend/code-collab
-                mvn clean install
-                '''
+                dir('code-collab-compiler-backend/code-collab/'){
+                    sh 'mvn clean package'
+                }
             }
         }
         stage('deploy'){
             steps{
-                sh '''
-                    ls
-                    cd target
-                    ls
-                    cp code-collab.jar /home/collider-backend/
-                '''
+                dir("code-collab-compiler-backend/code-collab/target"){
+                    sh 'cp code-collab.jar /home/collider-backend/'
+                }
             }
         }
     }
