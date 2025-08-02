@@ -16,7 +16,7 @@ const Navbar = (props) => {
         >
             <i className="bi bi-people-fill me-2"></i>
             Join room</button>
-          <JoinRoomModal />
+          <JoinRoomModal setUsers={props.setUsers} />
         {/* <button className="btn btn-primary me-2">
             <i className="bi bi-plus-circle-fill me-2"></i>
             Create room</button> */}

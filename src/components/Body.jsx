@@ -2,13 +2,12 @@ import React from 'react'
 import Editor from './Editor'
 import Info from './Info'
 import Output from './Output'
+import Navbar from './Navbar'
 
 const Body = () => {
     const [active,setActive]=React.useState(-1)
     const [output,setOutput]=React.useState({})
-    const [users,setUsers]=React.useState([
-        'Jeeva','Gagan','Rohan'
-    ])
+    const [users,setUsers]=React.useState(JSON.parse(sessionStorage.getItem('users'))||[])
     const [stdin,setStdIn]=React.useState("");
     
     function handleChange(e){
@@ -16,6 +15,7 @@ const Body = () => {
     }
   return (
     <>
+    <Navbar setUsers={setUsers} />
     <div style={{height:'10vh'}} className="bg-light"></div>
     <div className='d-md-flex flex-row-reverse pt-4'>
       <div style={{height:'85vh'}} className='bg-light col-md-6 px-3 pb-3 '>

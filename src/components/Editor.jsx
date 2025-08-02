@@ -21,19 +21,19 @@ export default function CodeEditor(props) {
     rust: "fn main() {\n  println!(\"Hello from Rust\");\n}"
   };
   const [language, setLanguage] = useState("java");
-  console.log(roomId,userId)
   const [code, setCode] = useState(defaultSnippets[language]);
+  const uid = props.uid
 
   React.useEffect(() => {
-    console.log(props.user[props.uid],"-----------------------------------");
+    console.log(props.user[uid],"-----------------------------------");
     if(roomId!=null){
-        connectSocket(props.user[props.uid], (msg) => {
+        connectSocket(uid==-1?sessionStorage.getItem('userId'):props.user[uid], (msg) => {
           
             setCode(msg.content);
           
         });
     }
-  }, [props.uid]);
+  }, [uid]);
 
 
 
@@ -57,7 +57,7 @@ export default function CodeEditor(props) {
   };
   function handleChange(value){
     setCode(value);
-    sendCode(props.user[props.uid], userId, value);
+    sendCode(uid==-1 ? sessionStorage.getItem('userId'):props.user[uid], userId, value);
   }
   return (
     <div style={{ height: "85%" }} className="bg-light overflow-hidden rounded-5 mt-3 nav">
@@ -79,10 +79,10 @@ export default function CodeEditor(props) {
             <option value="ruby">Ruby</option>
             <option value="rust">Rust</option>
           </select>
-          {sessionStorage.getItem('agora-token')!=null && <Audio />}
-          {props.uid === -1 || (
+          {/* {sessionStorage.getItem('agora-token')!=null && <Audio />} */}
+          {uid === -1 || (
             <div style={{ display: "inline-block" }} className="rounded-5 me-2 my-2 py-0 pb-0 btn btn-primary">
-              <p className="m-0 fw-normal m-0 p-0">{props.user[props.uid]}</p>
+              <p className="m-0 fw-normal m-0 p-0">{props.user[uid]}</p>
             </div>
           )}
         </div>

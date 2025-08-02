@@ -1,9 +1,10 @@
 import React from 'react'
 
 const Info = (props) => {
+  
   return (
     <>
-    <h5 className='fw-medium'><i className="bi bi-person me-2 text-primary "></i> Collaborator (3) </h5>
+    <h5 className='fw-medium'><i className="bi bi-person me-2 text-primary "></i> Collaborator ({props.users.length}) </h5>
       <div onClick={()=>props.setActive(-1)} style={{display:'inline-block'}}  className={`rounded-5 me-2 btn ${props.active===-1?'btn-primary':'btn-outline-secondary'}`}>
         <p  className="m-0 fw-normal ">My Code</p>
       </div>
