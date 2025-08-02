@@ -1,0 +1,32 @@
+pipeline{
+    agent {
+        label 'azure-collider-vm'
+    }
+
+    stages{
+        stage('clone'){
+            step{
+                git url: https://github.com/Prithivi36/code-collab-compiler.git ,
+                    branch: 'main'
+            }
+        }
+        stage('build'){
+            step{
+                sh '''
+                cd code-collab-compiler-backend/code-collab/
+                mvn clean install
+                '''
+            }
+        }
+        stage('deploy'){
+            step{
+                sh '''
+                    ls
+                    cd target
+                    ls
+                    cp code-collab.jar /home/collider-backend/
+                '''
+            }
+        }
+    }
+}
