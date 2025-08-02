@@ -13,6 +13,7 @@ pipeline{
         stage('build'){
             steps{
                 sh '''
+                ls
                 cd code-collab-compiler-backend/code-collab/
                 mvn clean install
                 '''
