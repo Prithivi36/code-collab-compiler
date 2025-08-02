@@ -13,7 +13,7 @@ export const connectSocket = (roomId, onMessage) => {
       const msg = JSON.parse(message.body);
       onMessage(msg);
     });
-    // stompClient.send(`/app/room/${roomId}/sync`, {},{})
+    stompClient.send(`/app/room/${roomId}/sync`, {},{})
   });
 };
 

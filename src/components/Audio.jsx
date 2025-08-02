@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 
 let client = null;
-let localAudioTrack; 
+let localAudioTrack;
+
+AgoraRTC.setLogLevel(0)
 
 function initializeClient() {
     client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });

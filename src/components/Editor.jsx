@@ -27,11 +27,10 @@ export default function CodeEditor(props) {
   React.useEffect(() => {
     console.log(props.user[props.uid]);
     if(roomId!=null){
-      console.log(roomId)
         connectSocket(roomId, (msg) => {
-          if (msg.userId !== userId) {
+          
             setCode(msg.content);
-          }
+          
         });
     }
   }, [props.uid]);
