@@ -5,13 +5,13 @@ pipeline{
 
     stages{
         stage('clone'){
-            step{
-                git url: https://github.com/Prithivi36/code-collab-compiler.git ,
+            steps{
+                git url: 'https://github.com/Prithivi36/code-collab-compiler.git' ,
                     branch: 'main'
             }
         }
         stage('build'){
-            step{
+            steps{
                 sh '''
                 cd code-collab-compiler-backend/code-collab/
                 mvn clean install
@@ -19,7 +19,7 @@ pipeline{
             }
         }
         stage('deploy'){
-            step{
+            steps{
                 sh '''
                     ls
                     cd target
