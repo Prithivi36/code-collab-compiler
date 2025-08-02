@@ -4,7 +4,8 @@ import Stomp from 'stompjs';
 let stompClient = null;
 
 export const connectSocket = (roomId, onMessage) => {
-  const socket = new SockJS('https://comp.back.6thdegree.app/ws');
+  // const socket = new SockJS('https://comp.back.6thdegree.app/ws');
+  const socket = new SockJS('http://localhost:8080/ws');
   stompClient = Stomp.over(socket);
 
   stompClient.connect({}, () => {
@@ -12,6 +13,7 @@ export const connectSocket = (roomId, onMessage) => {
       const msg = JSON.parse(message.body);
       onMessage(msg);
     });
+    stompClient.send(`/app/room/${roomId}/sync`, {},{})
   });
 };
 
