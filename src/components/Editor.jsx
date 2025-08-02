@@ -25,9 +25,9 @@ export default function CodeEditor(props) {
   const [code, setCode] = useState(defaultSnippets[language]);
 
   React.useEffect(() => {
-    console.log(props.user[props.uid]);
+    console.log(props.user[props.uid],"-----------------------------------");
     if(roomId!=null){
-        connectSocket(roomId, (msg) => {
+        connectSocket(props.user[props.uid], (msg) => {
           
             setCode(msg.content);
           
@@ -57,7 +57,7 @@ export default function CodeEditor(props) {
   };
   function handleChange(value){
     setCode(value);
-    sendCode(roomId, userId, value);
+    sendCode(props.user[props.uid], userId, value);
   }
   return (
     <div style={{ height: "85%" }} className="bg-light overflow-hidden rounded-5 mt-3 nav">

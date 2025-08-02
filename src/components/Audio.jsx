@@ -40,7 +40,6 @@ function setupEventListeners() {
     });
 
     client.on('user-unpublished', async (user) => {
-        // Handle user unpublished (you can handle cleanup here)
     });
 }
 
@@ -61,7 +60,6 @@ const Audio = () => {
         sessionStorage.getItem('agora-token'),
         );
 
-        // Clean up when component is unmounted
         return () => {
             leaveChannel();
         };
@@ -69,10 +67,8 @@ const Audio = () => {
 
     const toggleAudio = async () => {
         if (isMuted) {
-            // Unmute the audio
             await localAudioTrack.setEnabled(true);
         } else {
-            // Mute the audio
             await localAudioTrack.setEnabled(false);
         }
         setIsMuted(!isMuted);
