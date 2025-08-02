@@ -14,7 +14,9 @@ pipeline{
             steps{
                 sh '''
                 ls
-                cd code-collab-compiler-backend/code-collab/
+                cd code-collab-compiler-backend
+                ls
+                cd code-collab-compiler-backend/code-collab
                 mvn clean install
                 '''
             }
