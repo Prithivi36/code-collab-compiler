@@ -17,7 +17,7 @@ pipeline{
                     sh '''
                         cp code-collab.jar /home/collider-backend/
                         cd /home/collider-backend/
-                        java -jar code-collab.jar > log.txt & 1 > result.txt
+                        java -jar code-collab.jar > log.txt & echo '1' > result.txt
                        '''
                 }
             }
