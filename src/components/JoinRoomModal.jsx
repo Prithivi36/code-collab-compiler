@@ -1,21 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { connectUserSocket } from '../stomp/Stomp';
 
 const JoinRoomModal = () => {
   const [roomCode, setRoomCode] = useState('');
-  const [name,setName] =useState(sessionStorage.getItem('userId')||'');
+  const [name,setName] =useState('');
 
   const handleJoin = () => {
+
     if (roomCode.trim()) {
       sessionStorage.setItem('room',roomCode)
       sessionStorage.setItem('userId',name)
       axios.get("https://comp.back.6thdegree.app:8081/rtcToken?channelName="+roomCode).then(
         res=>{
           sessionStorage.setItem('agora-token',res.data.key)
-          console.log(res.data,"************************************8")
         }
-        
       ).
       then(
         res=>location.reload()
@@ -25,7 +23,6 @@ const JoinRoomModal = () => {
 
   return (
     <>
-      {/* Bootstrap Modal */}
       <div
         className="modal fade"
         id="joinRoomModal"
