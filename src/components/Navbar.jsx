@@ -4,7 +4,7 @@ import JoinRoomModal from './JoinRoomModal'
 const Navbar = () => {
 
   return (
-    <div style={{position:'absolute',left:'0',right:'0',top:'0'}} className='nav py-3 bg-white text-dark d-flex justify-content-between px-4'>
+    <div style={{position:'absolute',left:'0',right:'0',top:'0'}} className='nav py-3 bg-light text-dark d-flex justify-content-between px-4'>
       <h3 className='fw-medium' >
         <span className='text-primary'><i className="bi bi-code-slash me-2"></i></span>
         Collider
