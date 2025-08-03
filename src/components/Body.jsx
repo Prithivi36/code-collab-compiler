@@ -30,7 +30,7 @@ const Body = () => {
     <Navbar />
     <div style={{height:'10vh'}} className="bg-light"></div>
     <div className='d-md-flex flex-row-reverse pt-4'>
-      <div style={{height:'85vh'}} className='bg-light col-md-6 px-3 pb-3 mb-3 mb-md-0 '>
+      <div style={{height:'85vh'}} className='bg-light col-md-6 px-3 pb-3 '>
         <Info active={active} setActive={setActive} users={users} />
         <Editor user={users} uid={active} op={setOutput} stdin={stdin} />
       </div>

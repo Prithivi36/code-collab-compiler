@@ -86,7 +86,7 @@ export default function CodeEditor(props) {
           {sessionStorage.getItem('agora-token')!=null && <Audio />}
           {uid === -1 || (
             <div style={{ display: "inline-block" }} className="rounded-5 me-2 my-2 py-0 pb-0 btn btn-primary">
-              <p className="m-0 fw-normal m-0 p-0">{props.user[uid]}</p>
+              <p className="m-0 fw-normal text-nowrap mb-1 m-0 p-0">{props.user[uid]}</p>
             </div>
           )}
         </div>
