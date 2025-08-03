@@ -3,10 +3,10 @@ import Stomp from 'stompjs';
 
 let stompClient = null;
 let currentSubscription = null
-
+const BASE_URL ='https://comp.back.6thdegree.app/ws'
+// const BASE_URL ='http://localhost:8080/ws'
 export const connectSocket = (roomId, onMessage) => {
-  const socket = new SockJS('https://comp.back.6thdegree.app/ws');
-  // const socket = new SockJS('http://localhost:8080/ws');
+  const socket = new SockJS(BASE_URL);
   stompClient = Stomp.over(socket);
   stompClient.debug=()=>{}
   stompClient.connect({}, () => {
@@ -22,9 +22,7 @@ export const connectSocket = (roomId, onMessage) => {
 };
 let userStomp = null;
 export function connectUserSocket(roomId,name,onMessage){
-  return new Promise((resolve) => {
-  const socket = new SockJS("https://comp.back.6thdegree.app/ws")
-  // const socket = new SockJS('http://localhost:8080/ws');
+  const socket = new SockJS(BASE_URL)
     userStomp = Stomp.over(socket)
     userStomp.debug = () => {};
 
@@ -37,8 +35,27 @@ export function connectUserSocket(roomId,name,onMessage){
       userStomp.send(`/app/room/${roomId}/users/${name}`, {});
 
     })
-    resolve();
-  });
+}
+let notepadClient =null;
+export function connectNotepadSocket(roomId,onMessage){
+  const socket = new SockJS(BASE_URL)
+  notepadClient=Stomp.over(socket)
+  notepadClient.debug=()=>{}
+    notepadClient.connect({},()=>{
+      notepadClient.subscribe(`/topic/room/${roomId}/notepad`,(m)=>{
+        const msg = m.body
+        onMessage(msg);
+        sessionStorage.setItem('notepad',msg)
+      })
+      notepadClient.send(`/app/room/${roomId}/sync/notepad`,{},{})
+    })
+}
+export function sendNotes(roomId,content){
+  if(!notepadClient || !notepadClient.connected )return
+
+  notepadClient.send(`/app/room/${roomId}/notepad`,{},JSON.stringify({
+    content
+  }))
 }
 export const sendCode = (roomId, userId, content) => {
   if (!stompClient || !stompClient.connected) return;

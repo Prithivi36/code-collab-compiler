@@ -13,7 +13,7 @@ const Info = (props) => {
         props.users.map((u,i)=>{
             return(
                 <div key={i} onClick={()=>props.setActive(i)} style={{display:'inline-block'}}  className={`rounded-5 mt-2 mt-md-0 ps-2 me-2 btn ${props.active===i?'btn-primary':'btn-outline-secondary'}`}>
-                    <p  className="m-0 fw-normal text-nowrap "><div style={{height:'25px',width:'25px'}} className="rounded-5 text-light d-inline-block me-2 bg-primary">{u[0]}</div>{u}</p>
+                    <p  className="m-0 fw-normal text-nowrap "><span style={{height:'25px',width:'25px'}} className="rounded-5 text-light d-inline-block me-2 bg-primary">{u[0]}</span>{u}</p>
                 </div>
             )
         })
