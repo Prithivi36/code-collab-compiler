@@ -6,9 +6,10 @@ import { connectSocket, sendCode } from "../stomp/Stomp";
 import Audio from "./Audio";
 
 let roomId = sessionStorage.getItem('room');
-const userId = 'user-' + Math.random().toString(36).substr(2, 5);
+const userId = sessionStorage.getItem('userId')
 
 export default function CodeEditor(props) {
+
   const defaultSnippets = {
     javascript: "// Write your JavaScript code here",
     python: "# Write your Python code here",
@@ -20,47 +21,48 @@ export default function CodeEditor(props) {
     ruby: "# Write your Ruby code here\ndef hello\n  puts 'Hello from Ruby'\nend\nhello",
     rust: "fn main() {\n  println!(\"Hello from Rust\");\n}"
   };
+
   const [language, setLanguage] = useState("java");
   const [code, setCode] = useState(defaultSnippets[language]);
+
   const uid = props.uid
 
-  React.useEffect(() => {
-    console.log(props.user[uid],"-----------------------------------");
-    if(roomId!=null){
-        connectSocket(uid==-1?sessionStorage.getItem('userId'):props.user[uid], (msg) => {
-          if(sessionStorage.getItem('userId')!=msg.userId){
-            setCode(msg.content);
-          }
-            
-          
-        });
-    }
+  React.useEffect(
+    () => {
+      if(roomId!=null){
+          connectSocket(uid==-1?userId:props.user[uid], (msg) => {
+            if(userId!=msg.userId){
+              setCode(msg.content);
+            }
+          });
+      }
   }, [uid]);
 
 
 
 
   function handleSubmit(){
-    console.log("hi")
     const body =createPistonRequestBody(language,code,props.stdin)
     axios.post("https://emkc.org/api/v2/piston/execute",body).then(
       res=>{
         props.op(res.data.run)
-        console.log(res.data)
       }
     ).catch(
       err=>alert("Something went wrong : "+err.data)
     )
   }
+
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
     setLanguage(newLang);
     setCode(defaultSnippets[newLang] || "// Write your code here");
   };
+
   function handleChange(value){
     setCode(value);
-    sendCode(uid==-1 ? sessionStorage.getItem('userId'):props.user[uid], sessionStorage.getItem('userId'), value);
+    sendCode(uid==-1 ? userId:props.user[uid], userId, value);
   }
+  
   return (
     <div style={{ height: "85%" }} className="bg-light overflow-hidden rounded-5 mt-3 nav">
       <div className="p-2 w-100 d-flex justify-content-between">
