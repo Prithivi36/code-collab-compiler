@@ -28,8 +28,10 @@ export default function CodeEditor(props) {
     console.log(props.user[uid],"-----------------------------------");
     if(roomId!=null){
         connectSocket(uid==-1?sessionStorage.getItem('userId'):props.user[uid], (msg) => {
-          
+          if(sessionStorage.getItem('userId')!=msg.userId){
             setCode(msg.content);
+          }
+            
           
         });
     }
@@ -57,7 +59,7 @@ export default function CodeEditor(props) {
   };
   function handleChange(value){
     setCode(value);
-    sendCode(uid==-1 ? sessionStorage.getItem('userId'):props.user[uid], userId, value);
+    sendCode(uid==-1 ? sessionStorage.getItem('userId'):props.user[uid], sessionStorage.getItem('userId'), value);
   }
   return (
     <div style={{ height: "85%" }} className="bg-light overflow-hidden rounded-5 mt-3 nav">

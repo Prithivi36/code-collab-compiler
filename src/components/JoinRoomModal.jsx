@@ -16,8 +16,6 @@ const JoinRoomModal = (props) => {
           console.log(res.data,"************************************8")
         }
         
-      ).then(
-        connectUserSocket(roomCode,name,props.setUsers)
       ).
       then(
         res=>location.reload()

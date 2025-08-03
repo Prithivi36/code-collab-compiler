@@ -3,13 +3,20 @@ import Editor from './Editor'
 import Info from './Info'
 import Output from './Output'
 import Navbar from './Navbar'
+import { connectUserSocket } from '../stomp/Stomp'
 
 const Body = () => {
     const [active,setActive]=React.useState(-1)
     const [output,setOutput]=React.useState({})
     const [users,setUsers]=React.useState(JSON.parse(sessionStorage.getItem('users'))||[])
     const [stdin,setStdIn]=React.useState("");
-    
+    React.useEffect(
+      ()=>{
+        if(sessionStorage.getItem('userId')!=null){
+          connectUserSocket(sessionStorage.getItem('room'),sessionStorage.getItem('userId'),setUsers)
+        }
+      },[]
+    )
     function handleChange(e){
       setStdIn(e.target.value);
     }

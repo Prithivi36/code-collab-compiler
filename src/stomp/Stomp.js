@@ -22,6 +22,7 @@ export const connectSocket = (roomId, onMessage) => {
 };
 let userStomp = null;
 export function connectUserSocket(roomId,name,onMessage){
+  return new Promise((resolve) => {
   const socket = new SockJS("https://comp.back.6thdegree.app/ws")
   // const socket = new SockJS('http://localhost:8080/ws');
     userStomp = Stomp.over(socket)
@@ -35,6 +36,8 @@ export function connectUserSocket(roomId,name,onMessage){
       userStomp.send(`/app/room/${roomId}/users/${name}`, {});
 
     })
+    resolve();
+  });
 }
 export const sendCode = (roomId, userId, content) => {
   if (!stompClient || !stompClient.connected) return;
