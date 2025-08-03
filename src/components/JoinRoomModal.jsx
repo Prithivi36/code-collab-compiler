@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { connectUserSocket } from '../stomp/Stomp';
 
-const JoinRoomModal = (props) => {
+const JoinRoomModal = () => {
   const [roomCode, setRoomCode] = useState('');
   const [name,setName] =useState(sessionStorage.getItem('userId')||'');
 
