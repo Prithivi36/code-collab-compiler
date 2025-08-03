@@ -4,7 +4,7 @@ import AgoraRTC from 'agora-rtc-sdk-ng';
 let client = null;
 let localAudioTrack;
 
-AgoraRTC.setLogLevel(0)
+AgoraRTC.setLogLevel(3)
 
 function initializeClient() {
     client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' });

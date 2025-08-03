@@ -8,7 +8,7 @@ export const connectSocket = (roomId, onMessage) => {
   const socket = new SockJS('https://comp.back.6thdegree.app/ws');
   // const socket = new SockJS('http://localhost:8080/ws');
   stompClient = Stomp.over(socket);
-  
+  stompClient.debug=()=>{}
   stompClient.connect({}, () => {
     if(currentSubscription){
       currentSubscription.unsubscribe();
@@ -26,6 +26,7 @@ export function connectUserSocket(roomId,name,onMessage){
   const socket = new SockJS("https://comp.back.6thdegree.app/ws")
   // const socket = new SockJS('http://localhost:8080/ws');
     userStomp = Stomp.over(socket)
+    userStomp.debug = () => {};
 
     userStomp.connect({},()=>{
       userStomp.subscribe(`/topic/room/users/${roomId}`,(m)=>{
