@@ -59,6 +59,9 @@
 .bg-primary {
   background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
 }
+.text-primary{
+  color: #4f46e5 !important;
+}
 .main-canv{
   padding-top: 110px;
   color: black;
