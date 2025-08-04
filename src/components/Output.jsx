@@ -14,7 +14,18 @@ const Output = (props) => {
            {props.output.code!=null &&   <div className="">
                 {props.output.code==0?<p className='m-0 text-success fw-bolder'>Compilation Successful</p>:<p className='m-0 text-danger fw-bolder'>Compilation Error</p>}
               </div>}
-            <textarea placeholder={props.loading?'compiling .....':'compile to see output'} value={props.loading?"compiling ....":props.output.output} disabled className={`${props.output.code==1?'text-danger ':'text-black fw-normal '}border-0  bg-white w-100 notes h-100`} name="" id=""></textarea>
+              {/* <div
+                className={`${props.output.code == 1 ? 'text-danger' : 'text-black fw-normal'} notes`}
+                style={{
+                  whiteSpace: 'pre-wrap',
+                  fontFamily: 'monospace',
+                  height: '100%',
+                  overflowY: 'auto'
+                }}
+              >
+                {props.loading ? 'compiling ....' : props.output.output || 'compile to see output'}
+              </div> */}
+            <textarea style={{fontFamily:'monospace'}} placeholder={props.loading?'compiling .....':'compile to see output'} value={props.loading?"compiling ....":props.output.output} disabled className={`${props.output.code==1?'text-danger ':'text-black fw-normal '}border-0  bg-white w-100 notes h-100`} name="" id=""></textarea>
           </div>}
           {inp&&<div className="bg-white p-3 h-75">
             <textarea onChange={props.handleChange} placeholder='type your input here'  className='border-0 text-black bg-white w-100 notes h-100' name="" id=""></textarea>
