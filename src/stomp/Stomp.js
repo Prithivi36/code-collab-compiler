@@ -3,8 +3,8 @@ import Stomp from 'stompjs';
 
 let stompClient = null;
 let currentSubscription = null
-// const BASE_URL ='https://comp.back.6thdegree.app/ws'
-const BASE_URL ='http://localhost:8080/ws'
+const BASE_URL ='https://comp.back.6thdegree.app/ws'
+// const BASE_URL ='http://localhost:8080/ws'
 export  const connectSocket = async (roomId, onMessage) => {
   const socket = new SockJS(BASE_URL);
   stompClient = Stomp.over(socket);
