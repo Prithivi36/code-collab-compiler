@@ -42,17 +42,18 @@ const JoinRoomModal = () => {
             </div>
 
             <div className="modal-body">
+              <p className='text-warning'>Make sure you are connected to a strong network to ensure better experience {"</>"}</p>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Room code"
+                placeholder="Enter same room code to join..."
                 value={roomCode}
                 onChange={(e) => setRoomCode(e.target.value)}
               />
               <input
                 type="text"
                 className="form-control mt-3"
-                placeholder="your name"
+                placeholder="Your userName"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />

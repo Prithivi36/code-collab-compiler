@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="actions d-md-block">
         {roomId!=null?
           <div className="">
-            <p className='m-0 p-0 fw-medium'>Room id : <span className='text-primary fw-bolder'> {roomId} </span><i style={{cursor:'pointer'}}  onClick={()=>deleteUser(roomId,userId)} className='bi bi-box-arrow-right text-center text-light bg-danger px-3 py-2 rounded-5 m-0 fw-bolder'></i> </p>
+            <p className='m-0 p-0 fw-medium'>Room id : <span className='text-primary fw-bolder'> {roomId} </span><i style={{cursor:'pointer'}}  onClick={()=>deleteUser(roomId,userId)}  className='bi bi-box-arrow-right text-center text-danger  px-3 py-2 rounded-5 m-0 fw-bolder'></i> </p>
           </div>
           
           :
