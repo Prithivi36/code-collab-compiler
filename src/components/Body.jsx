@@ -12,7 +12,7 @@ const Body = () => {
     const [output,setOutput]=React.useState({})
     const [users,setUsers]=React.useState([])
     const [stdin,setStdIn]=React.useState("");
-
+    const [loading,setLoading]=React.useState(false);
     React.useEffect(
       ()=>{
         if(sessionStorage.getItem('userId')!=null){
@@ -33,11 +33,11 @@ const Body = () => {
     <div className='d-md-flex flex-row-reverse pt-4'>
       <div style={{height:'85vh'}} className='bg-light col-md-6 px-3 pb-3 '>
         <Info active={active} setActive={setActive} users={users} />
-        <Editor user={users} uid={active} op={setOutput} stdin={stdin} />
+        <Editor user={users} loading={loading} setLoading={setLoading} uid={active} op={setOutput} stdin={stdin} />
       </div>
       <div style={{height:'85vh'}} className='bg-light col-md-6  px-3 pb-3 '>
         <Notepad />
-        <Output output={output} handleChange={handleChange} />
+        <Output output={output} loading={loading} setLoading={setLoading} handleChange={handleChange} />
       </div>
     </div>
     </>

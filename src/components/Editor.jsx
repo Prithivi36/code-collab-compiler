@@ -24,6 +24,7 @@ export default function CodeEditor(props) {
 
   const [language, setLanguage] = useState("java");
   const [code, setCode] = useState(defaultSnippets[language]);
+  const [loading,setLoading]=useState(false);
 
   const uid = props.uid
 
@@ -42,13 +43,18 @@ export default function CodeEditor(props) {
 
 
   function handleSubmit(){
+    props.setLoading(true)
     const body =createPistonRequestBody(language,code,props.stdin)
     axios.post("https://emkc.org/api/v2/piston/execute",body).then(
       res=>{
         props.op(res.data.run)
       }
-    ).catch(
-      err=>alert("Something went wrong : "+err.data)
+    ).then(
+      res=>props.setLoading(false)
+    )
+    .catch(
+      err=>{alert("Something went wrong : "+err.data)
+      props.setLoading(false)}
     )
   }
 
@@ -90,7 +96,7 @@ export default function CodeEditor(props) {
             </div>
           )}
         </div>
-        <button onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
+        <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
       </div>
 
       <Editor
