@@ -28,54 +28,46 @@ const JoinRoomModal = () => {
         id="joinRoomModal"
         tabIndex="-1"
       >
-        <div className="modal-dialog">
+        <div style={{maxWidth:'400px'}} className="modal-dialog modal-dialog-centered modal-sm">
           <div className="modal-content">
-
-            <div className="modal-header">
-              <h5 className="modal-title" id="joinRoomModalLabel">Enter Room Code</h5>
+            <div className="modal-body  p-3 py-5">
+            <p style={{fontFamily:'revert-layer'}} className='fw-medium text-primary-emphasis fs-5 text-center'><span className='fs-1'>🔐</span> Enter room</p>
+              <p className='text-warning text-center mb-3'>Make sure you're on a strong network for the best experience <span className='text-primary fw-medium'>{"</>"}</span> </p>
+              <div className="inps p-3">
+                <input
+                  type="text"
+                  className="form-control-cust"
+                  placeholder="Room Code..."
+                  value={roomCode}
+                  onChange={(e) => setRoomCode(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className="form-control-cust mt-3"
+                  placeholder="Username..."
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            <div className='align-items-center justify-content-center mt-4 gap-3 d-flex' >
               <button
                 type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-
-            <div className="modal-body">
-              <p className='text-warning'>Make sure you are connected to a strong network to ensure better experience {"</>"}</p>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter same room code to join..."
-                value={roomCode}
-                onChange={(e) => setRoomCode(e.target.value)}
-              />
-              <input
-                type="text"
-                className="form-control mt-3"
-                placeholder="Your userName"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-secondary px-3 py-2"
                 data-bs-dismiss="modal"
               >
-                Cancel
+                ❌ Cancel
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary px-3 py-2"
                 onClick={handleJoin}
                 data-bs-dismiss="modal"
               >
-                Join
+                🚀 Join
               </button>
             </div>
+            </div>
+
 
           </div>
         </div>

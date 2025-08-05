@@ -1,6 +1,7 @@
 import React from 'react'
 import JoinRoomModal from './JoinRoomModal'
 import { deleteUser } from '../stomp/Stomp'
+import ManualModal from './ManualModal'
 
 const Navbar = () => {
   const roomId=sessionStorage.getItem('room')
@@ -20,14 +21,13 @@ const Navbar = () => {
           :
           <button className="btn btn-outline-secondary me-2"
           data-bs-toggle="modal"
-          data-bs-target="#joinRoomModal"
+          data-bs-target="#manual"
         >
             <i className="bi bi-people-fill me-2"></i>
             Join room</button>}
           <JoinRoomModal />
-        {/* <button className="btn btn-primary me-2">
-            <i className="bi bi-plus-circle-fill me-2"></i>
-            Create room</button> */}
+          <ManualModal />
+        
       </div>
     </div>
   )

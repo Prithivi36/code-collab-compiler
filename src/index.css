@@ -97,3 +97,36 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
 }
+.img-box {
+  width: 75%;
+}
+
+@media (max-width: 991px) {
+  .img-box {
+    width: 30%;
+  }
+  @media (min-width: 769px) {
+    .img-box {
+      width: 50%;
+    }
+  }
+}
+.form-control-cust {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #64748b;
+  width: 100%;
+  padding: 10px;
+  background-color: aliceblue;
+  transition: box-shadow 0.3s ease, border-bottom 0.3s ease, transform 0.3s ease;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.form-control-cust:focus {
+  outline: none;
+  border-radius: 8px;
+  transform: translateY(-4px); /* move input upward */
+  box-shadow: -7px 8px  0 rgba(0, 0, 0, 0.3); /* shadow below */
+  border: 1px solid #af1ead; /* bottom border color on focus */
+}
