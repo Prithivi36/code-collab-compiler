@@ -61,6 +61,7 @@ export default function CodeEditor(props) {
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
     setLanguage(newLang);
+    if(roomId==null)
     setCode(defaultSnippets[newLang] || "// Write your code here");
   };
 
