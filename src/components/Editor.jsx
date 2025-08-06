@@ -14,7 +14,7 @@ export default function CodeEditor(props) {
     javascript: "// Write your JavaScript code here",
     python: "# Write your Python code here",
     cpp: "#include <iostream>\nint main() {\n  // Write your C++ code here\n  return 0;\n}",
-    java: "public class Main {\n  public static void main(String[] args) {\n    // Write your Java code here\n  }\n}",
+    java: "class Main {\n  public static void main(String[] args) {\n    // Write your Java code here\n  }\n}",
     c: "#include <stdio.h>\nint main() {\n  // Write your C code here\n  return 0;\n}",
     go: "package main\nimport \"fmt\"\nfunc main() {\n  fmt.Println(\"Hello from Go\")\n}",
     csharp: "using System;\nclass Program {\n  static void Main() {\n    Console.WriteLine(\"Hello from C#\");\n  }\n}",
@@ -43,6 +43,7 @@ export default function CodeEditor(props) {
 
 
   function handleSubmit(){
+    props.setLoading(true)
 
     if(language=='java'){
       const body ={
@@ -57,14 +58,18 @@ export default function CodeEditor(props) {
               output:res.data.stdout||res.data.stderr
             })
           }
-      ).catch(
-        err=>alert("Something went wrong")
+      ).then(
+        res=>props.setLoading(false)
+      )
+      .catch(
+        err=>{alert("Something went wrong")
+          props.setLoading(false)
+        }
       )
 
       return;
     }
 
-    props.setLoading(true)
     const body =createPistonRequestBody(language,code,props.stdin)
     axios.post("https://emkc.org/api/v2/piston/execute",body).then(
       res=>{
