@@ -55,7 +55,7 @@ export async function connectNotepadSocket(roomId,onMessage){
     await notepadClient.connect({},()=>{
       notepadClient.subscribe(`/topic/room/${roomId}/notepad`,(m)=>{
         const msg = JSON.parse(m.body)
-        if(msg.userId!=sessionStorage.getItem('userId'))
+        if(msg.user!=sessionStorage.getItem('userId'))
           onMessage(msg.content);
       })
       notepadClient.send(`/app/room/${roomId}/sync/notepad`,{},{})
@@ -66,7 +66,7 @@ export function sendNotes(roomId,content,userId){
 
   notepadClient.send(`/app/room/${roomId}/notepad`,{},JSON.stringify({
     content,
-    userId
+    user:userId
   }))
 }
 export const sendCode = (roomId, userId, content) => {
