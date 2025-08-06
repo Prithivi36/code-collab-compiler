@@ -43,6 +43,27 @@ export default function CodeEditor(props) {
 
 
   function handleSubmit(){
+
+    if(language=='java'){
+      const body ={
+        code:btoa(code),
+        input:props.stdin
+      }
+      axios.post("https://comp.back.6thdegree.app:8080/api/java",body).then(
+          res=>{
+            console.log(res.data)
+            props.op({
+              code:res.data.statusMes=="Successfully Compiled"?0:res.data.statusMes=="Runtime Error"?2:1,
+              output:res.data.stdout||res.data.stderr
+            })
+          }
+      ).catch(
+        err=>alert("Something went wrong")
+      )
+
+      return;
+    }
+
     props.setLoading(true)
     const body =createPistonRequestBody(language,code,props.stdin)
     axios.post("https://emkc.org/api/v2/piston/execute",body).then(
@@ -99,7 +120,6 @@ export default function CodeEditor(props) {
         </div>
         <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
       </div>
-
       <Editor
         className="overflow-hidden text-dark rounded-bottom-5 border-top pt-3 bg-white"
         height="100%"

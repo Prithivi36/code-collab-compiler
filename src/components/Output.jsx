@@ -2,6 +2,7 @@ import React from 'react'
 
 const Output = (props) => {
     const [inp,setInp]=React.useState(false);
+    console.log(props)
   return (
     <>
       <div style={{height:'45%'}} className="shad rounded-5 mt-3 overflow-hidden">
@@ -12,19 +13,8 @@ const Output = (props) => {
           </div>
           {!inp&&<div className="bg-white p-3 h-75">
            {props.output.code!=null &&   <div className="">
-                {props.output.code==0?<p className='m-0 text-success fw-bolder'>Compilation Successful</p>:<p className='m-0 text-danger fw-bolder'>Compilation Error</p>}
+                {props.output.code==0?<p className='m-0 text-success fw-bolder'>Compilation Successful</p>:<p className='m-0 text-danger fw-bolder'>{props.output.code==1?'Compilation':'Runtime'} Error</p>}
               </div>}
-              {/* <div
-                className={`${props.output.code == 1 ? 'text-danger' : 'text-black fw-normal'} notes`}
-                style={{
-                  whiteSpace: 'pre-wrap',
-                  fontFamily: 'monospace',
-                  height: '100%',
-                  overflowY: 'auto'
-                }}
-              >
-                {props.loading ? 'compiling ....' : props.output.output || 'compile to see output'}
-              </div> */}
             <textarea style={{fontFamily:'monospace'}} placeholder={props.loading?'compiling .....':'compile to see output'} value={props.loading?"compiling ....":props.output.output} disabled className={`${props.output.code==1?'text-danger ':'text-black fw-normal '}border-0  bg-white w-100 notes h-100`} name="" id=""></textarea>
           </div>}
           {inp&&<div className="bg-white p-3 h-75">
