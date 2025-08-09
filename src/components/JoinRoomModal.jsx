@@ -35,6 +35,7 @@ const JoinRoomModal = () => {
               <p className='text-warning text-center mb-3'>Make sure you're on a strong network for the best experience <span className='text-primary fw-medium'>{"</>"}</span> </p>
               <div className="inps p-3">
                 <input
+                  style={{fontFamily:"monospace"}}
                   type="text"
                   className="form-control-cust"
                   placeholder="Room Code..."
