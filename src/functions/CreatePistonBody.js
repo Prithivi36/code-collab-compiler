@@ -13,7 +13,7 @@ export function createPistonRequestBody(language, code,stdin) {
     python: "main.py",
     javascript: "main.js",
     c: "main.c",
-    "c++": "main.cpp",
+    cpp: "main.cpp",
     go: "main.go",
     rust: "main.rs",
     csharp: "Program.cs"

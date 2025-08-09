@@ -23,7 +23,7 @@ const Notepad = () => {
         <p className='ps-2 m-0 pb-0 fw-medium'> <i className='bi bi-journal-text text-primary me-2 fw-medium'></i>Notepad</p>
         </div>
         <div className="bg-white p-3 h-75">
-        <textarea style={{fontFamily:'cursive'}} value={notes} onChange={handleChange} placeholder='Questions, Discussions, ideas and more' className='border-0 w-100 notes h-100' name="" id=""></textarea>
+        <textarea style={{fontFamily:'revert-layer'}} value={notes} onChange={handleChange} placeholder='Questions, Discussions, ideas and more' className='border-0 w-100 notes h-100' name="" id=""></textarea>
         </div>
     </div>
     </>

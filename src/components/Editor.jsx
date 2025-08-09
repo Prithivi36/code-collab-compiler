@@ -57,6 +57,7 @@ export default function CodeEditor(props) {
               code:res.data.statusMes=="Successfully Compiled"?0:res.data.statusMes=="Runtime Error"?2:1,
               output:res.data.stdout||res.data.stderr
             })
+            props.setLoading(false)
           }
       ).then(
         res=>props.setLoading(false)
