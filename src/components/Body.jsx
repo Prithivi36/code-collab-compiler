@@ -42,7 +42,7 @@ const Body = () => {
     <div  style={{height:'90vh'}}  className='d-md-flex flex-row-reverse pt-4'>
       {edit && <div style={{height:'90vh'}} className='bg-light smooth col-md  px-3 pb-3 '>
         <Info active={active} setActive={setActive} users={users} />
-        <Editor editFull={toggleFull}  user={users} loading={loading} setLoading={setLoading} uid={active} op={setOutput} stdin={stdin} />
+        <Editor full={editfull} editFull={toggleFull}  user={users} loading={loading} setLoading={setLoading} uid={active} op={setOutput} stdin={stdin} />
       </div>}
       {
         !editfull &&

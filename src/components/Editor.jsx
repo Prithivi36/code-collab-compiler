@@ -126,7 +126,7 @@ export default function CodeEditor(props) {
         </div>
         <div className="">
           <button onClick={props.editFull} className="btn btn-outline-secondary btn-sm m-2 rounded-5">
-            <i   className="bi bi-fullscreen"></i>
+            <i   className={`bi ${!props.full?'bi-fullscreen':'bi-fullscreen-exit '} m-0 p-0`}></i>
           </button>
           <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
         </div>
