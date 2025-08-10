@@ -98,7 +98,7 @@ export default function CodeEditor(props) {
   }
   
   return (
-    <div style={{ height: "85%" }} className="bg-light overflow-hidden rounded-5 mt-3 nav">
+    <div style={{height:"85%"}} className="bg-light overflow-hidden rounded-5 mt-3 nav">
       <div className="p-2 w-100 d-flex justify-content-between">
         <div className="d-flex gap-3 align-items-center justify-content-center ps-3 pt-2">
           <select
@@ -124,7 +124,12 @@ export default function CodeEditor(props) {
             </div>
           )}
         </div>
-        <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
+        <div className="">
+          <button onClick={props.editFull} className="btn btn-outline-secondary btn-sm m-2 rounded-5">
+            <i   className="bi bi-fullscreen"></i>
+          </button>
+          <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
+        </div>
       </div>
       <Editor
         className="overflow-hidden text-dark rounded-bottom-5 border-top pt-3 bg-white"

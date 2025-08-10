@@ -130,3 +130,6 @@
   box-shadow: -7px 8px  0 rgba(0, 0, 0, 0.3); /* shadow below */
   border: 1px solid #af1ead; /* bottom border color on focus */
 }
+.smooth{
+  transition: all smooth;
+}
