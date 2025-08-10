@@ -38,7 +38,7 @@ const Body = () => {
   return (
     <>
     <Navbar />
-    <div style={{height:'10vh'}} className="bg-dark mb-3 mb-md-0"></div>
+    <div style={{height:'10vh'}} className="bg-light mb-3 mb-md-0"></div>
     <div  style={{height:'90vh'}}  className='d-md-flex flex-row-reverse pt-4'>
       {edit && <div style={{height:'90vh'}} className='bg-light smooth col-md  px-3 pb-3 '>
         <Info active={active} setActive={setActive} users={users} />
