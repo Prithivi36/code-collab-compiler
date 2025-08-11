@@ -12,7 +12,7 @@ const Output = (props) => {
               <div className="">|</div>
               <p style={{cursor:'pointer'}} onClick={()=>setInp(true)}  className={`${inp?'text-primary':''} ps-2 m-0 pb-0 fw-medium`}> <i className='bi bi-input-cursor text-primary me-2 fw-bolder'></i>Input</p>
             </div>
-            <p style={{cursor:'pointer'}} onClick={props.setFull} className='m-0 pe-3 '><i   className={`bi ${!props.full?'bi-fullscreen':'bi-fullscreen-exit '} m-0 p-0`}></i></p>
+            <p style={{cursor:'pointer'}} onClick={props.setFull} className='m-0 pe-3 d-md-block d-none '><i   className={`bi ${!props.full?'bi-fullscreen':'bi-fullscreen-exit  '} m-0 p-0`}></i></p>
           </div>
           {!inp&&<div className="bg-white p-3 h-75">
            {props.output.code!=null &&   <div className="">
