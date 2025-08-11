@@ -48,8 +48,9 @@ export default function CodeEditor(props) {
     if(language=='java'){
       const body ={
         code:btoa(code),
-        input:props.stdin
+        input:btoa(props.stdin)
       }
+      console.log(body)
       axios.post("https://comp.back.6thdegree.app:8080/api/java",body).then(
           res=>{
             console.log(res.data)
