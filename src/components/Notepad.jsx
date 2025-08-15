@@ -3,12 +3,11 @@ import { connectNotepadSocket, sendNotes } from '../stomp/Stomp';
 
 
 const Notepad = (props) => {
-  console.log("rerender")
-  props.comeback(true)
-    const roomCode = sessionStorage.getItem('room');
-    const[notes,setNotes]=React.useState('')
-    React.useEffect(
-        ()=>{
+  const roomCode = sessionStorage.getItem('room');
+  const[notes,setNotes]=React.useState('')
+  React.useEffect(
+    ()=>{
+            props.comeback(true)
             if(roomCode!=null){
                 connectNotepadSocket(roomCode,setNotes)
             }

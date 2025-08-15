@@ -4,7 +4,6 @@ export function createPistonRequestBody(language, code,stdin) {
   const version = versions[language];
   
   if (!version) {
-    console.error(`❌ Unsupported language: ${language}`);
     return null;
   }
 
@@ -32,7 +31,5 @@ export function createPistonRequestBody(language, code,stdin) {
     ],
     stdin:stdin
   };
-
-  console.log("📤 Request Body:", JSON.stringify(body, null, 2));
   return body;
 }

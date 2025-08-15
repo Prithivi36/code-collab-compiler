@@ -4,8 +4,8 @@ import Stomp from 'stompjs';
 
 let stompClient = null;
 let currentSubscription = null
-// const BASE_URL ='https://comp.back.6thdegree.app/ws'
-const BASE_URL ='http://localhost:8080/ws'
+const BASE_URL ='https://comp.back.6thdegree.app/ws'
+// const BASE_URL ='http://localhost:8080/ws'
 export  const connectSocket = async (userId, onMessage) => {
   const socket = new SockJS(BASE_URL);
   stompClient = Stomp.over(socket);
@@ -49,14 +49,8 @@ export async function connectUserSocket(roomId,name,onMessage){
   }
 
 export function deleteUser(roomId,userId){
-  console.log("deleted")
-  // if (!userStomp || !userStomp.connected) return;
-  // userStomp.send(`/app/room/${roomId}/del/${userId}`)
-  axios.post(`http://localhost:8080/delete/${roomId}/${userId}`)
-  sessionStorage.removeItem('room')
-  sessionStorage.removeItem('userId')
-  sessionStorage.removeItem('agora-token')
-  sessionStorage.removeItem('users')
+  axios.post(`https://comp.back.6thdegree.app/${roomId}/${userId}`)
+  sessionStorage.clear()
   location.reload();
 
 }

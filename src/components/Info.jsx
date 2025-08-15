@@ -7,7 +7,7 @@ const Info = (props) => {
     <h5 className='fw-medium'><i className="bi bi-person me-2  text-primary "></i> Collaborators ({props.users.length}) </h5>
     <div className="d-flex flex-nowrap overflow-scroll  hide-scroll">
       {sessionStorage.getItem('userId') != null ?<div onClick={()=>props.setActive(-1)}   className={`rounded-5 me-2 btn ${props.active===-1?'btn-primary':'btn-success'}`}>
-        <p  className="m-0 fw-normal text-nowrap ">{sessionStorage.getItem('userId')}</p>
+        <p  className="m-0 fw-normal p-0 text-nowrap ">{sessionStorage.getItem('userId')}</p>
       </div> :''}
       {
         props.users.map((u,i)=>{

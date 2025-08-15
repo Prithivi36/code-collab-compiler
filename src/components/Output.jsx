@@ -2,7 +2,6 @@ import React from 'react'
 
 const Output = (props) => {
     const [inp,setInp]=React.useState(false);
-    console.log(props)
   return (
     <>
       <div style={{transition:'all 0.9s ease',height:props.full?'100%':'50%'}} className="shad rounded-5 mt-3 bg-white overflow-hidden">

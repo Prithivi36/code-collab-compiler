@@ -2,10 +2,36 @@ import React from 'react'
 import JoinRoomModal from './JoinRoomModal'
 import { deleteUser } from '../stomp/Stomp'
 import ManualModal from './ManualModal'
+import axios from 'axios'
 
 const Navbar = () => {
   const roomId=sessionStorage.getItem('room')
   const userId=sessionStorage.getItem('userId')
+
+  React.useEffect(() => {
+
+    const handleTabClose = (event) => {
+
+      if (roomId && userId) {
+        event.preventDefault();
+        event.returnValue=''
+      }
+    };
+    const handleUnload =(event)=>{
+      if(roomId && userId){
+        sessionStorage.clear();
+        navigator.sendBeacon(`https://comp.back.6thdegree.app/delete/${roomId}/${userId}`, "{}")
+      }
+    }
+
+    window.addEventListener('beforeunload', handleTabClose);
+    window.addEventListener('unload',handleUnload)
+    return () => {
+      window.removeEventListener('beforeunload', handleTabClose);
+      window.removeEventListener('unload',handleUnload)
+    };
+  }, [roomId, userId]);
+
   return (
     <div style={{position:'absolute',left:'0',right:'0',top:'0'}} className='nav py-3 bg-light text-dark d-flex align-items-center justify-content-between px-4'>
       <h3 className='fw-medium' >
