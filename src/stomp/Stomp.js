@@ -1,11 +1,12 @@
+import axios from 'axios';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
 let stompClient = null;
 let currentSubscription = null
-const BASE_URL ='https://comp.back.6thdegree.app/ws'
-// const BASE_URL ='http://localhost:8080/ws'
-export  const connectSocket = async (roomId, onMessage) => {
+// const BASE_URL ='https://comp.back.6thdegree.app/ws'
+const BASE_URL ='http://localhost:8080/ws'
+export  const connectSocket = async (userId, onMessage) => {
   const socket = new SockJS(BASE_URL);
   stompClient = Stomp.over(socket);
   stompClient.debug=()=>{}
@@ -13,12 +14,22 @@ export  const connectSocket = async (roomId, onMessage) => {
     if(currentSubscription){
       currentSubscription.unsubscribe();
     }
-    currentSubscription=stompClient.subscribe(`/topic/room/${roomId}`, (message) => {
+    currentSubscription=stompClient.subscribe(`/topic/room/${userId}`, (message) => {
       const msg = JSON.parse(message.body);
       onMessage(msg);
+      
     });
-    stompClient.send(`/app/room/${roomId}/sync`, {},{})
+    stompClient.send(`/app/room/${userId}/sync`, {},{})
   });
+};
+export const sendCode = (currUser, userId, content) => {
+  if (!stompClient || !stompClient.connected) return;
+
+  stompClient.send(`/app/room/${currUser}/edit`, {}, JSON.stringify({
+    userId,
+    content,
+    timestamp: Date.now()
+  }));
 };
 let userStomp = null;
 export async function connectUserSocket(roomId,name,onMessage){
@@ -35,11 +46,13 @@ export async function connectUserSocket(roomId,name,onMessage){
       userStomp.send(`/app/room/${roomId}/users/${name}`, {});
 
     })
-}
+  }
+
 export function deleteUser(roomId,userId){
   console.log("deleted")
-  if (!userStomp || !userStomp.connected) return;
-  userStomp.send(`/app/room/${roomId}/del/${userId}`)
+  // if (!userStomp || !userStomp.connected) return;
+  // userStomp.send(`/app/room/${roomId}/del/${userId}`)
+  axios.post(`http://localhost:8080/delete/${roomId}/${userId}`)
   sessionStorage.removeItem('room')
   sessionStorage.removeItem('userId')
   sessionStorage.removeItem('agora-token')
@@ -69,13 +82,3 @@ export function sendNotes(roomId,content,userId){
     user:userId
   }))
 }
-export const sendCode = (roomId, userId, content) => {
-  if (!stompClient || !stompClient.connected) return;
-
-  stompClient.send(`/app/room/${roomId}/edit`, {}, JSON.stringify({
-    userId,
-    roomId,
-    content,
-    timestamp: Date.now()
-  }));
-};
