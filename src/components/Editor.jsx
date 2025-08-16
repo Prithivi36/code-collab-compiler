@@ -36,10 +36,7 @@ export default function CodeEditor(props) {
               setCode(msg.content);
             }
           });
-      }else{
-        setCode(sessionStorage.getItem('localCode'))
       }
-      return sessionStorage.setItem("localCode",code)
   }, [uid]);
 
 
