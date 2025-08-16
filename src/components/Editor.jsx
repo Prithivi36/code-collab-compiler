@@ -36,7 +36,10 @@ export default function CodeEditor(props) {
               setCode(msg.content);
             }
           });
+      }else{
+        setCode(sessionStorage.getItem('localCode'))
       }
+      return sessionStorage.setItem("localCode",code)
   }, [uid]);
 
 
@@ -97,11 +100,11 @@ export default function CodeEditor(props) {
   }
   
   return (
-    <div style={{height:"85%"}} className="bg-light overflow-hidden rounded-5 mt-3 nav">
-      <div className="p-2 w-100 d-flex justify-content-between">
+    <div style={{height:"85%"}} className={`overflow-hidden rounded-5 mt-3  ${props.dark?'border-dark shad-dark':' shad'} `}>
+      <div className={`p-2 w-100 d-flex justify-content-between  ${props.dark?'bg-darkmode':'bg-light'}`}>
         <div className="d-flex gap-3 align-items-center justify-content-center ps-3 pt-2">
           <select
-            className="form-select text-dark ps-3"
+            className={`form-select  ${props.dark?'bg-prime-dark border-dark':'bg-white '}  border-1  ps-3`}
             onChange={handleLanguageChange}
             value={language}
             style={{ marginBottom: "10px", padding: "5px" }}
@@ -123,21 +126,40 @@ export default function CodeEditor(props) {
             </div>
           )}
         </div>
-        <div className="d-flex">
-          <button onClick={props.editFull} className="btn d-md-block d-none btn-outline-secondary btn-sm m-2 rounded-5">
+        <div className="d-flex align-items-center">
+          <button onClick={props.editFull} className={`btn d-md-block d-none  btn-sm m-2 rounded-5  ${props.dark?'text-light':'text-dark'}`}>
             <i   className={`bi ${!props.full?'bi-fullscreen':'bi-fullscreen-exit '} m-0 p-0`}></i>
           </button>
-          <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-5 px-3 me-4 btn-sm">Run</button>
+          <div className="">
+            <button disabled={props.loading} onClick={handleSubmit} className="btn btn-success m-2 rounded-circle me-4 btn-sm"><i className="bi bi-play-fill"></i></button>
+          </div>
         </div>
       </div>
       <Editor
-        className="overflow-hidden text-dark rounded-bottom-5 border-top pt-3 bg-white"
+        className={`overflow-hidden rounded-bottom-5 pt-3  ${props.dark?'border-dark':''} border-top`}
         height="100%"
         width="100%"
         language={language}
         value={code}
+        beforeMount={(monaco)=>{
+          monaco.editor.defineTheme("custom-dark",{
+            base:"vs-dark",
+            inherit:true,
+            rules: [
+        { token: "comment", foreground: "97FF80" },
+        { token: "keyword", foreground: "8FFEFF" },
+        { token: "string", foreground: "CE9178" },
+      ],
+      colors: {
+        "editor.background": "#0A0E14",
+        "editor.foreground": "#dcdfdbff",
+        "editorLineNumber.foreground": "#F8FFF3",
+        "editorCursor.foreground": "#FFFFFF",
+      },
+          })
+        }}
         onChange={handleChange}
-        theme="vs-light"
+        theme={`${props.dark?'custom-dark':'vs-light'}`}
       />
     </div>
   );

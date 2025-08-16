@@ -6,10 +6,11 @@ import Navbar from './Navbar'
 import { connectUserSocket } from '../stomp/Stomp'
 import Notepad from './Notepad'
 
-const Body = () => {
+const Body = (props) => {
 
     const [active,setActive]=React.useState(-1)
     const [output,setOutput]=React.useState({})
+    const [code,setCode]=React.useState({})
     const [users,setUsers]=React.useState([])
     const [stdin,setStdIn]=React.useState("");
     const [loading,setLoading]=React.useState(false);
@@ -36,25 +37,25 @@ const Body = () => {
     }
 
   return (
-    <>
-    <Navbar />
-    <div style={{height:'10vh'}} className="bg-light mb-3 mb-md-0"></div>
-    <div  style={{height:'90vh'}}  className='d-md-flex flex-row-reverse pt-4'>
-      {edit && <div style={{height:'90vh'}} className='bg-light smooth col-md  px-3 pb-3 '>
-        <Info active={active} setActive={setActive} users={users} />
-        <Editor full={editfull} editFull={toggleFull}  user={users} loading={loading} setLoading={setLoading} uid={active} op={setOutput} stdin={stdin} />
-      </div>}
+    <div className={props.dark?'bg-prime-dark':'bg-white'}>
+    <Navbar dark={props.dark} setDark={props.setDark} />
+    <div style={{height:'10vh'}} className=" mb-3 mb-md-0"></div>
+    <div  style={{height:'90vh'}}  className={`d-md-flex flex-row-reverse pt-4 ${props.dark?'bg-prime-dark':'bg-white'}`}>
+      <div style={{height:'90vh'}} className={`smooth ${edit?'d-block':'d-none'} col-md  px-3 ${props.dark?'bg-prime-dark':'bg-white text-dark'}`}>
+        <Info dark={props.dark} setDark={props.setDark} active={active} setActive={setActive} users={users} />
+        <Editor code={code} setCode={setCode} dark={props.dark} setDark={props.setDark} full={editfull} editFull={toggleFull}  user={users} loading={loading} setLoading={setLoading} uid={active} op={setOutput} stdin={stdin} />
+      </div>
       {
         !editfull &&
-        <div style={{height:'85vh'}} className='bg-light col-md px-3 pb-3 '>
+        <div style={{height:'85vh'}} className={`col-md px-3 pb-3  ${props.dark?'bg-prime-dark':'bg-white'}`}>
           {notepart && 
-          <Notepad full={!outpad} setFull={()=>setOutpad(!outpad)} comeback={setedit}/>}
+          <Notepad dark={props.dark} setDark={props.setDark} full={!outpad} setFull={()=>setOutpad(!outpad)} comeback={setedit}/>}
           {outpad&&
-          <Output full={!notepart} setFull={()=>setNotepart(!notepart)} output={output} loading={loading} setLoading={setLoading} handleChange={handleChange} />}
+          <Output dark={props.dark} setDark={props.setDark} full={!notepart} setFull={()=>setNotepart(!notepart)} output={output} loading={loading} setLoading={setLoading} handleChange={handleChange} />}
         </div>
       }
     </div>
-    </>
+    </div>
   )
 }
 

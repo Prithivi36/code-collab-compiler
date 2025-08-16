@@ -8,7 +8,7 @@ export default function ManualModal() {
     <div id='manual' className='modal fade'>
       <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div className="modal-content">
-            <div className="modal-body">
+            <div className="modal-body ">
                 <div className="ins d-lg-flex justify-content-center align-items-center gap-5">
                     <div className="d-flex flex-column align-items-center justify-content-center">
                         <img src={step1} className='img-fluid col-6 img-box' />
