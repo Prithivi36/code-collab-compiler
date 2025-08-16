@@ -10,7 +10,7 @@ const JoinRoomModal = (props) => {
     if (roomCode.trim()) {
       sessionStorage.setItem('room',roomCode)
       sessionStorage.setItem('userId',name)
-      axios.get("https://comp.back.6thdegree.app:8081/rtcToken?channelName="+roomCode).then(
+      axios.get("https://back.colider.app:8081/rtcToken?channelName="+roomCode).then(
         res=>{
           sessionStorage.setItem('agora-token',res.data.key)
         }

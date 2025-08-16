@@ -50,7 +50,7 @@ export default function CodeEditor(props) {
         code:btoa(code),
         input:btoa(props.stdin)
       }
-      axios.post("https://comp.back.6thdegree.app:8080/api/java",body).then(
+      axios.post("https://back.colider.app:8080/api/java",body).then(
           res=>{
             props.op({
               code:res.data.statusMes=="Successfully Compiled"?0:res.data.statusMes=="Runtime Error"?2:1,
