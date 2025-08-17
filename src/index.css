@@ -86,10 +86,6 @@
 }
 
 
-.edit{
-  z-index: 1000;
-}
-
 .hide-scroll::-webkit-scrollbar {
   display: none;
 }
