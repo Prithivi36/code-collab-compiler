@@ -30,21 +30,21 @@ const JoinRoomModal = (props) => {
       >
         <div style={{maxWidth:'400px'}} className=" modal-dialog modal-dialog-centered modal-sm">
           <div className="modal-content overflow-hidden">
-            <div className={`modal-body  ${props.dark?'bg-prime-dark':' '} p-3 py-5`}>
+            <div className={`modal-body p-3 py-5`}>
             <p style={{fontFamily:'revert-layer'}} className='fw-medium  fs-5 text-center'><span className='fs-1'>🔐</span> Enter room</p>
               <p className='text-warning text-center mb-3'>Make sure you're on a strong network for the best experience <span className='text-primary fw-medium'>{"</>"}</span> </p>
               <div className="inps p-3">
                 <input
                   style={{fontFamily:"monospace"}}
                   type="text"
-                  className={`form-control-cust${props.dark?'-dark':''}`}
+                  className={`form-control-cust`}
                   placeholder="Room Code..."
                   value={roomCode}
                   onChange={(e) => setRoomCode(e.target.value)}
                 />
                 <input
                   type="text"
-                  className={`form-control-cust${props.dark?'-dark':''} mt-3`}
+                  className={`form-control-cust mt-3`}
                   placeholder="Username..."
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -53,7 +53,7 @@ const JoinRoomModal = (props) => {
             <div className='align-items-center justify-content-center mt-4 gap-3 d-flex' >
               <button
                 type="button"
-                className={`btn btn-outline-secondary px-3 py-2 ${props.dark?'text-light':''}`}
+                className={`btn btn-outline-secondary px-3 py-2 `}
                 data-bs-dismiss="modal"
               >
                 ❌ Cancel

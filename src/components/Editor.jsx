@@ -112,9 +112,6 @@ export default function CodeEditor(props) {
             <option value="c">C</option>
             <option value="java">Java</option>
             <option value="go">Go</option>
-            <option value="csharp">C#</option>
-            <option value="ruby">Ruby</option>
-            <option value="rust">Rust</option>
           </select>
           {sessionStorage.getItem('agora-token')!=null && <Audio />}
           {uid === -1 || (
