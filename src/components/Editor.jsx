@@ -158,7 +158,6 @@ export default function CodeEditor(props) {
             minimap: {
               enabled: false,
             },
-            scrollBeyondLastLine:false,
             cursorBlinking:"expand",
       }}
       />
