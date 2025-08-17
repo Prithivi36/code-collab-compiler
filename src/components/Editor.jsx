@@ -157,6 +157,13 @@ export default function CodeEditor(props) {
         }}
         onChange={handleChange}
         theme={`${props.dark?'custom-dark':'vs-light'}`}
+        options={{
+            minimap: {
+              enabled: false,
+            },
+            scrollBeyondLastLine:false,
+            cursorBlinking:"expand",
+      }}
       />
     </div>
   );
