@@ -54,7 +54,7 @@ const Navbar = (props) => {
             data-bs-toggle="modal"
             data-bs-target="#manual"
             className="bi bi-people-fill me-2"></i>
-            Join room</button>}
+            Join</button>}
           <JoinRoomModal dark={props.dark}  />
           <ManualModal dark={props.dark} />
         
