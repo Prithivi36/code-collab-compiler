@@ -2,9 +2,17 @@ import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Body from './components/Body'
 import FeedBackModal from './components/FeedBackModal';
+import axios from 'axios'
 
 function App() {
     const [dark,setDark] =React.useState(true);
+    React.useEffect(
+        ()={
+            axios.post("https://back.colider.app/feedback",{
+            message:"user"
+            })
+        },[]
+    )
     return(
       <div className={` ${dark?'bg-prime-dark':'bg-white'} hide-scroll overflow-x-auto`}>
         <FeedBackModal />
