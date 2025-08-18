@@ -7,7 +7,7 @@ import axios from 'axios'
 function App() {
     const [dark,setDark] =React.useState(true);
     React.useEffect(
-        ()={
+        ()=>{
             axios.post("https://back.colider.app/feedback",{
             message:"user"
             })
