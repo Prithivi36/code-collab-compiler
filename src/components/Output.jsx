@@ -11,7 +11,7 @@ const Output = (props) => {
     )
   return (
     <>
-      <div style={{transition:'height 0.9s ease',height:props.full?'100%':'50%'}} className={` ${props.dark?'border-dark shad-dark':'shad'}  rounded-5 mt-3 border-1  overflow-hidden`}>
+      <div id='out' style={{transition:'height 0.9s ease',height:props.full?'100%':'50%'}} className={` ${props.dark?'border-dark shad-dark':'shad'}  rounded-5 mt-3 border-1  overflow-hidden`}>
           <div className={` ${props.dark?'bg-darkmode border-dark':'bg-light'} border-bottom  d-flex align-items-center justify-content-between  p-4`}>
             <div className="d-flex gap-3">
               <p style={{cursor:'pointer'}} onClick={()=>setInp(true)}  className={`${inp?'text-primary':''} ps-2 m-0 pb-0 fw-medium`}> <i className='bi bi-input-cursor text-primary me-2 fw-bolder'></i>Input</p>

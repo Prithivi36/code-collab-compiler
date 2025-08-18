@@ -9,7 +9,7 @@ function App() {
       <div className={` ${dark?'bg-prime-dark':'bg-white'} hide-scroll overflow-x-auto`}>
         <FeedBackModal />
         <div data-bs-toggle="modal"
-          data-bs-target="#feedback" style={{cursor:'pointer' ,position:'fixed',bottom:0,right:0,zIndex:'10000',opacity:0.3}} className='bg- mb-0 d-none d-md-block px-2 m-0  p-0 text-white'>
+          data-bs-target="#feedback" style={{cursor:'pointer' ,position:'fixed',bottom:0,right:0,zIndex:'10000',opacity:0.3}} className={` mb-0 d-none d-md-block px-2 m-0  p-0 text-${dark?'white':'black'}`}>
           report <i className="bi ms-1 bi-exclamation-circle"></i></div>
         <Body dark={dark} setDark={setDark}/>
       </div>
