@@ -51,7 +51,7 @@ const Body = (props) => {
           {notepart && 
           <Notepad dark={props.dark} setDark={props.setDark} full={!outpad} setFull={()=>setOutpad(!outpad)} comeback={setedit}/>}
           {outpad&&
-          <Output dark={props.dark} setDark={props.setDark} full={!notepart} setFull={()=>setNotepart(!notepart)} output={output} loading={loading} setLoading={setLoading} handleChange={handleChange} />}
+          <Output dark={props.dark} setDark={props.setDark} full={!notepart} setFull={()=>setNotepart(!notepart)} output={output} loading={loading} setLoading={setLoading} handleChange={handleChange} stdin={stdin} />}
         </div>
       }
     </div>
