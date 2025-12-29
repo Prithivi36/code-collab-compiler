@@ -45,30 +45,30 @@ export default function CodeEditor(props) {
   function handleSubmit(){
     props.setLoading(true)
 
-    if(language=='java'){
-      const body ={
-        code:btoa(code),
-        input:btoa(props.stdin)
-      }
-      axios.post("https://back.colider.app:8080/api/java",body).then(
-          res=>{
-            props.op({
-              code:res.data.statusMes=="Successfully Compiled"?0:res.data.statusMes=="Runtime Error"?2:1,
-              output:res.data.stdout||res.data.stderr
-            })
-            props.setLoading(false)
-          }
-      ).then(
-        res=>props.setLoading(false)
-      )
-      .catch(
-        err=>{alert("Something went wrong")
-          props.setLoading(false)
-        }
-      )
+    // if(language=='java'){
+    //   const body ={
+    //     code:btoa(code),
+    //     input:btoa(props.stdin)
+    //   }
+    //   axios.post("https://back.colider.app:8080/api/java",body).then(
+    //       res=>{
+    //         props.op({
+    //           code:res.data.statusMes=="Successfully Compiled"?0:res.data.statusMes=="Runtime Error"?2:1,
+    //           output:res.data.stdout||res.data.stderr
+    //         })
+    //         props.setLoading(false)
+    //       }
+    //   ).then(
+    //     res=>props.setLoading(false)
+    //   )
+    //   .catch(
+    //     err=>{alert("Something went wrong")
+    //       props.setLoading(false)
+    //     }
+    //   )
 
-      return;
-    }
+    //   return;
+    // }
 
     const body =createPistonRequestBody(language,code,props.stdin)
     axios.post("https://emkc.org/api/v2/piston/execute",body).then(
